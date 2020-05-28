@@ -2,8 +2,8 @@
 // 练习1：
 // 使用fp.add(x, y)和fp.map(f, x)创建一个能让functor里的值增加的函数exl
 
-const fp = require("lodash/fp");
-const { Maybe, Container } = require("./support");
+const fp = require('lodash/fp');
+const { Maybe, Container } = require('./support');
 
 let maybe = Maybe.of([5, 6, 1]);
 
@@ -16,7 +16,7 @@ console.log(exl(1));
 // const fp = require("lodash/fp");
 // const { Maybe, Container } = require("./support");
 
-let xs = Container.of(["do", "ray", "me", "fa", "so", "la", "ti", "do"]);
+let xs = Container.of(['do', 'ray', 'me', 'fa', 'so', 'la', 'ti', 'do']);
 
 let ex2 = () => xs.map(fp.first);
 console.log(ex2()._value);
@@ -30,9 +30,9 @@ console.log(ex2()._value);
 let safeProp = fp.curry(function (x, o) {
   return Maybe.of(o[x]);
 });
-let user = { id: 2, name: "Albert" };
+let user = { id: 2, name: 'Albert' };
 let ex3 = (property, target) => safeProp(property, target).map(fp.first);
-console.log(ex3("name", user)._value);
+console.log(ex3('name', user)._value);
 
 // 练习4：
 // 使用Maybe重写ex4,不要有if语句
@@ -46,6 +46,5 @@ let ex4 = function (n) {
   }
 };
 
-// ex4 = (n) => Maybe.of(parseInt(n))
-// console.log(ex4('000123'));
-
+ex4 = (n) => Maybe.of(n).map(parseInt)
+console.log(ex4('123'));
